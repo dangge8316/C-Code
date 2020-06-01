@@ -30,6 +30,43 @@ std::string MagicStone::str() const
 	return ret.str();
 }
 
+//灵石类"+"运算符重载
+MagicStone MagicStone::operator+(MagicStone other)
+{
+	//定义num变量统计总共有多少块初阶灵石
+	int num{ };
+
+	//先计算出要相加的灵石对象折合多少初阶灵石
+	if (other.level == MagicStone_Level::PRIMARY_LEVEL)
+	{
+		num += other.count;
+	}
+	else if (other.level==MagicStone_Level::MIDDLE_LEVEL)
+	{
+		num += other.count * 10;
+	}
+	else if(other.level==MagicStone_Level::ADVANCED_LEVEL)
+	{
+		num += other.count * 100;
+	}
+	
+	//计算自己的灵石折合多少初阶灵石
+	if (this->level == MagicStone_Level::PRIMARY_LEVEL)
+	{
+		num += this->count;
+	}
+	else if (this->level == MagicStone_Level::MIDDLE_LEVEL)
+	{
+		num += this->count * 10;
+	}
+	else if (this->level == MagicStone_Level::ADVANCED_LEVEL)
+	{
+		num += this->count * 100;
+	}
+	
+	return MagicStone(num, MagicStone_Level::PRIMARY_LEVEL);
+}
+
 //"<<"运算符重载
 std::ostream& operator<<(std::ostream& os, const MagicStone& stone)
 {

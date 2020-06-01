@@ -20,6 +20,7 @@ public:
 	std::string str() const;
 	//重载"<<"运算符,方便输出信息
 	friend std::ostream& operator<<(std::ostream& os, const MagicStone& stone);
+	MagicStone operator+(MagicStone other);
 private:
 	//灵石数量
 	int count;

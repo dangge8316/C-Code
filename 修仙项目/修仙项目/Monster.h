@@ -10,7 +10,7 @@ public:
 	//构造函数
 	Monster(int level = 1, std::string category = "未知种类");
 	//获取妖兽价值(多少灵石)
-	MagicStone getValue(int level);
+	MagicStone getValue();
 	//运算符重载
 	friend std::ostream& operator<<(std::ostream& os, Monster& monster);
 private:
