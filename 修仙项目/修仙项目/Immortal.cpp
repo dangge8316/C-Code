@@ -43,7 +43,21 @@ bool Immortal::trade()
 
 bool Immortal::trade(const Monster& monster)
 {
-	return false;
+	//交易前先判断人物是否存活,如果否直接返回false
+	if (!isAlive)
+	{
+		return false;
+	}
+	//判断是否有指定妖兽
+	if (!hadMonster(monster))
+	{
+		std::cout << "交易失败,未找到指定妖兽!" << std::endl;
+		return false;
+	}
+	MagicStone stone = monster.getValue();
+	stones.push_back(stone);
+	delMonster(monster);
+	return true;
 }
 
 bool Immortal::trade(Immortal& other, const Monster& monster)
@@ -68,6 +82,37 @@ int Immortal::getPower() const
 
 bool Immortal::captureMonster()
 {
+	return false;
+}
+
+bool Immortal::hadMonster(const Monster& monster)
+{
+	for (int i = 0; i < monsters.size(); i++)
+	{
+		if (monsters[i] == monster)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Immortal::delMonster(const Monster& monster)
+{
+	std::vector<Monster>::iterator it = monsters.begin();
+	while (it != monsters.end())
+	{
+		if (*it == monster)
+		{
+			it = monsters.erase(it);
+			return true;
+		}
+		else
+		{
+			it++;
+		}
+	}
+	std::cout << "删除失败,未找到指定妖兽" << std::endl;
 	return false;
 }
 

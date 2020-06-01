@@ -65,6 +65,9 @@ private:
 	std::vector<Monster> monsters;
 	//是否活着
 	bool isAlive;
+	//是否有指定妖兽
+	bool hadMonster(const Monster& monster);
+	bool delMonster(const Monster& monster);
 
 };
 
